@@ -1,0 +1,13 @@
+{
+  "files": {
+    "main.css": "/mangoshop/static/css/main.86d9e059.css",
+    "main.js": "/mangoshop/static/js/main.61d32920.js",
+    "index.html": "/mangoshop/index.html",
+    "main.86d9e059.css.map": "/mangoshop/static/css/main.86d9e059.css.map",
+    "main.61d32920.js.map": "/mangoshop/static/js/main.61d32920.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.86d9e059.css",
+    "static/js/main.61d32920.js"
+  ]
+}

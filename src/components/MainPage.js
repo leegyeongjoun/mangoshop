@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
-import './MainPage.css'
+import './MainPage.css';
 import axios from 'axios';
+import {Link} from 'react-router-dom'; // 카드를 누르면 다른곳으로 가기 위해서
 
 const MainPage = () => {
     let [products, setProducts] = useState([]);
@@ -30,17 +31,19 @@ const MainPage = () => {
                         // console.log(product);
                         return (
                             <div className="product-card" key={idx}>
-                                <div>
-                                    <img src={product.imageUrl} alt={product.name} className="product-img" />
-                                </div>
-                                <div className="product-contents">
-                                    <span className="product-name">{product.name}</span>
-                                    <span className="product-price">{product.price}</span>
-                                    <span className="product-seller">
-                                        <img src="./images/icons/avatar.png" alt="" className="product-avatar" />
-                                        <span>{product.seller}</span>
-                                    </span>
-                                </div>
+                                <Link className='product-link' to={`/ProductPage/${idx}`}>
+                                    <div>
+                                        <img src={product.imageUrl} alt={product.name} className="product-img" />
+                                    </div>
+                                    <div className="product-contents">
+                                        <span className="product-name">{product.name}</span>
+                                        <span className="product-price">{product.price}</span>
+                                        <span className="product-seller">
+                                            <img src="./images/icons/avatar.png" alt="avater이미지" className="product-avatar" />
+                                            <span>{product.seller}</span>
+                                        </span>
+                                    </div>
+                                </Link>
                             </div>
                         )
 
@@ -48,10 +51,10 @@ const MainPage = () => {
                 </div>
             </div>
             <div id="footer">
-                <a href="#!">회사소개</a>
-                <a href="#!">이용약관</a>
-                <a href="#!">통신판매업:123-1234</a>
-                <a href="#!">사업자등록번호:456-56-789654</a>
+                <Link to="/about">회사소개</Link>
+                <Link to="/policy">이용약관</Link>
+                <Link to="/sales">통신판매업:123-1234</Link>
+                <Link to="/license">사업자등록번호:456-56-789654</Link>
             </div>
         </div>
     );

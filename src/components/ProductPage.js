@@ -26,7 +26,7 @@ const ProductPage = () => {
                 <img src={`/${product.imageUrl}`} alt={product.name} />
             </div>
             <div id="profile-box">
-                <img src="./images/icons/avatar.png" alt={product.seller}/>
+                <img src="/images/icons/avatar.png" alt={product.seller}/>
                 <span className='product-seller'>{product.seller}</span>
             </div>
             <div id="contents-box">

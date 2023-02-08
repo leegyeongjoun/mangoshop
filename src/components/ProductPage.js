@@ -1,15 +1,17 @@
 import React, {useEffect, useState} from 'react';
 import {useParams, useNavigate} from 'react-router-dom';
 import axios from 'axios';
-import './ProducPage.scss'
+import './ProducPage.scss';
+import { API_URL } from '../config/constant';
 
 const ProductPage = () => {
     const{id} =useParams();
     const Navigate=useNavigate();
     const[product, setProduct] = useState(null);
     useEffect(()=>{
-        axios.get(`http://localhost:8080/products/${id}`)
+        axios.get(`${API_URL}/products/${id}`)
         .then((result)=>{
+            console.log(result.data)
             setProduct(result.data.product); //product로 작성해줘야 데이터가 들어온다.
         }).catch((error)=>{
             console.error(error)

@@ -8,9 +8,9 @@ const ProductPage = () => {
     const Navigate=useNavigate();
     const[product, setProduct] = useState(null);
     useEffect(()=>{
-        axios.get(`https://eff99341-3b13-44b5-82ae-56cd7149bd2b.mock.pstmn.io/products/${id}`)
+        axios.get(`http://localhost:8080/products/${id}`)
         .then((result)=>{
-            setProduct(result.data);
+            setProduct(result.data.product); //product로 작성해줘야 데이터가 들어온다.
         }).catch((error)=>{
             console.error(error)
         })

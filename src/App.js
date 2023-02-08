@@ -13,7 +13,7 @@ function App() {
         <div className='App'>
             <div id="header">
                 <div id="header-area">
-                    <Link to="/"><img src="./images/icons/logo.png" alt="logo"/></Link>
+                    <Link to="/"><img src="/images/icons/logo.png" alt="logo"/></Link>
                     <Button size="large" icon={<DownloadOutlined/>} onClick={()=>navigate('/UploadPage')}>상품 업로드</Button>
                 </div>
             </div>

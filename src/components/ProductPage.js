@@ -1,31 +1,47 @@
 import React, {useEffect, useState} from 'react';
 import {useParams, useNavigate} from 'react-router-dom';
 import axios from 'axios';
-import './ProducPage.scss';
+import "./ProducPage.scss"
 import { API_URL } from '../config/constant';
+import {Button, message} from 'antd';
 
 const ProductPage = () => {
     const{id} =useParams();
     const Navigate=useNavigate();
-    const[product, setProduct] = useState(null);
-    useEffect(()=>{
+    const[product,setProduct] = useState(null);
+    const getProduct= () =>{
         axios.get(`${API_URL}/products/${id}`)
         .then((result)=>{
-            console.log(result.data)
-            setProduct(result.data.product); //product로 작성해줘야 데이터가 들어온다.
+            console.log(result.data);
+            setProduct(result.data.product);
         }).catch((error)=>{
             console.error(error)
         })
-    },[id])
+    }
+    useEffect(()=>{
+        getProduct();
+    }, [])
     if(product===null){
         return <h1>상품정보를 받고 있습니다.</h1>
     }
+
+    const onClickPurchase = () =>{
+        axios.post(`${API_URL}/purchase/${id}`)
+        .then((result)=>{
+            message.info('결제가 완료 되었습니다.')
+            getProduct();
+        })
+        .catch((error)=>{
+            message.error( `에러가 발생했습니다. ${error.message}}`)
+        });
+    }
+   
 
     return (
         <div>
             <button onClick={() => Navigate(-1)} id="back-btn">이전화면</button>
             <div className="image-box">
-                <img src={`/${product.imageUrl}`} alt={product.name} />
+                <img src={`${API_URL}/${product.imageUrl}`} alt={product.name} />
             </div>
             <div id="profile-box">
                 <img src="/images/icons/avatar.png" alt={product.seller}/>
@@ -35,6 +51,9 @@ const ProductPage = () => {
                 <div id="name">{product.name}</div>
                 <div id="price">{product.price}원</div>
                 <div id="createAt">23.02.03</div>
+                <Button type="primary" className="purchase" danger={true} size="large" onClick={onClickPurchase} disabled={product.soldout===1 ?true:false}>
+                    즉시결제하기
+                </Button>
                 <div id="description">{product.description}</div>
             </div>
         </div>
